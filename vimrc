@@ -10,11 +10,17 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'kien/ctrlp.vim' " fuzzy search
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-bufferline'
+
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
 
 
 call vundle#end()
+
 filetype plugin indent on
 
 " Setup
@@ -34,3 +40,6 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+
+
+let g:airline_theme='angr'
