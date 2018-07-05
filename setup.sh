@@ -40,3 +40,6 @@ fi
 
 ln -sf $ROOT_DIR/tmux.conf ~/.tmux.conf
 echo "Linked ~/.tmux.conf"
+
+
+echo "export PATH=$PATH:$ROOT_DIR/bin" >> ~/.bashrc
