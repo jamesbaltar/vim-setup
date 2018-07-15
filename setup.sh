@@ -1,10 +1,14 @@
 #!/bin/bash
 
-ROOT_DIR=`pwd`
+ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 sudo apt-get install -y \
 	vim \
 	tmux \
+	build-essential \
+	cmake \
+	python-dev \
+	python3-dev \
 	git
 
 mkdir -p ~/.vim/bundle
@@ -40,6 +44,84 @@ fi
 
 ln -sf $ROOT_DIR/tmux.conf ~/.tmux.conf
 echo "Linked ~/.tmux.conf"
+
+
+# Setup YouCompleteMe
+git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+cd ~/.vim/bundle/YouCompleteMe
+# Build ycm_core
+git submodule update --init --recursive
+#cd $ROOT_DIR
+#if [ -d "$ROOT_DIR/build" ]; then
+#	rm $ROOT_DIR/build -R
+#fi
+#mkdir -p $ROOT_DIR/build
+#cd $ROOT_DIR/build
+#mkdir ycm_build
+#cd ycm_build
+#cmake . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+#cmake --build . --target ycm_core --config Release
+## Build ycm regex
+#cd $ROOT_DIR/build
+#mkdir regex_build
+#cd regex_build
+#cmake . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/cregex
+#cmake --build . --target _regex --config Release
+
+setup_ycm_typescript() {
+    sudo apt-get install nodejs
+    sudo npm install -g typescript
+    YCM_BUILD="$YCM_BUILD --js-completer"
+}
+setup_ycm_go() {
+    if [ ! -x "$(command -v go)" ]; then
+	echo "Go not found. Installing it now"
+	sudo apt-get install -y wget
+    	wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
+	sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
+	rm go1.10.3.linux-amd64.tar.gz
+	echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+	export PATH=$PATH:/usr/local/go/bin
+    fi
+    YCM_BUILD="$YCM_BUILD --go-completer"
+}
+
+
+YCM_BUILD='--clang-completer'
+while true; do
+    read -p "[YouCompleteMe] Install TypeScript support [Y/n]" yn
+    case $yn in
+        [Yy]* ) setup_ycm_typescript; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+					
+while true; do
+    read -p "[YouCompleteMe] Install Go support [Y/n]?" yn
+    case $yn in
+        [Yy]* ) setup_ycm_go; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+cd ~/.vim/bundle/YouCompleteMe
+./install.py $YCM_BUILD
+echo "Built YouCompleteMe with \"$YCM_BUILD\" flags"
+
+setup_vuejs_syntax_highlighting_support() {
+    sudo npm i -g eslint eslint-plugin-vue
+}
+
+# Install VueJS(*.vue) Syntax Highlighing
+while true; do
+    read -p "Install VueJS(*.vue) Syntax Highlighting [Y/n]" yn
+    case $yn in
+        [Yy]* ) setup_vuejs_syntax_highlighting_support; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 
 echo "export PATH=$PATH:$ROOT_DIR/bin" >> ~/.bashrc

@@ -14,6 +14,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-bufferline'
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'leafgarland/typescript-vim'
+Plugin 'jason0x43/vim-js-indent'
+
+Plugin 'posva/vim-vue'
 
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
@@ -31,6 +37,11 @@ set number " show line numbers
 set background=dark 
 colorscheme onedark
 
+set tabstop=8
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+
 " Setup tab navigation
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
@@ -43,3 +54,6 @@ nnoremap td  :tabclose<CR>
 
 
 let g:airline_theme='angr'
+
+" Use vim-js-indent instead of the builtin typescript indent in typescript-vim
+let g:typescript_indent_disable = 1
