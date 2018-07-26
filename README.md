@@ -10,3 +10,9 @@ My VIM Setup
 ```
 :PluginInstall
 ```
+3. Open tmux and install plugins through `TPM` by typing
+```
+prefix + I
+```
+
+# Usage

@@ -18,7 +18,7 @@ Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'leafgarland/typescript-vim'
 Plugin 'jason0x43/vim-js-indent'
-
+Plugin 'fatih/vim-go'
 Plugin 'posva/vim-vue'
 
 " Colorschemes

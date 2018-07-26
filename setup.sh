@@ -9,7 +9,8 @@ sudo apt-get install -y \
 	cmake \
 	python-dev \
 	python3-dev \
-	git
+	git \
+	fonts-powerline
 
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -123,5 +124,9 @@ while true; do
     esac
 done
 
-
-echo "export PATH=$PATH:$ROOT_DIR/bin" >> ~/.bashrc
+if [[ ":$PATH:" == *":$ROOT_DIR/bin:"* ]]; then
+  echo "Your PATH already includes $ROOT_DIR/bin"
+else
+  echo "export PATH=$PATH:$ROOT_DIR/bin" >> ~/.bashrc
+  echo "$ROOT_DIR/bin was added in your PATH through ~/.bashrc"
+fi
