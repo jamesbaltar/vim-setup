@@ -52,25 +52,9 @@ git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouComplet
 cd ~/.vim/bundle/YouCompleteMe
 # Build ycm_core
 git submodule update --init --recursive
-#cd $ROOT_DIR
-#if [ -d "$ROOT_DIR/build" ]; then
-#	rm $ROOT_DIR/build -R
-#fi
-#mkdir -p $ROOT_DIR/build
-#cd $ROOT_DIR/build
-#mkdir ycm_build
-#cd ycm_build
-#cmake . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-#cmake --build . --target ycm_core --config Release
-## Build ycm regex
-#cd $ROOT_DIR/build
-#mkdir regex_build
-#cd regex_build
-#cmake . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/cregex
-#cmake --build . --target _regex --config Release
 
 setup_ycm_typescript() {
-    sudo apt-get install nodejs
+    sudo apt-get install -y npm
     sudo npm install -g typescript
     YCM_BUILD="$YCM_BUILD --js-completer"
 }
@@ -111,6 +95,7 @@ cd ~/.vim/bundle/YouCompleteMe
 echo "Built YouCompleteMe with \"$YCM_BUILD\" flags"
 
 setup_vuejs_syntax_highlighting_support() {
+    sudo apt-get install -y npm
     sudo npm i -g eslint eslint-plugin-vue
 }
 
