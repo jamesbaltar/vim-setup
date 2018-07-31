@@ -10,7 +10,8 @@ sudo apt-get install -y \
 	python-dev \
 	python3-dev \
 	git \
-	fonts-powerline
+	fonts-powerline \
+        xclip # use for tmux copy buffer
 
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
