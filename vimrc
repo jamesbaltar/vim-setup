@@ -20,6 +20,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'jason0x43/vim-js-indent'
 Plugin 'fatih/vim-go'
 Plugin 'posva/vim-vue'
+Plugin 'nvie/vim-flake8'
 
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
@@ -34,7 +35,7 @@ set nowrap
 syntax on
 set t_Co=256
 set number " show line numbers
-set background=dark 
+set background=dark
 colorscheme onedark
 
 set tabstop=8
@@ -81,3 +82,5 @@ function! DeleteInactiveBufs()
     echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 command! Bdi :call DeleteInactiveBufs()
+
+autocmd BufWritePre * %s/\s\+$//e
