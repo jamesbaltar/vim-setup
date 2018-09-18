@@ -9,6 +9,7 @@ sudo apt-get install -y \
 	cmake \
 	python-dev \
 	python3-dev \
+        flake8 \
 	git \
 	fonts-powerline \
         xclip # use for tmux copy buffer
@@ -82,7 +83,7 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-					
+
 while true; do
     read -p "[YouCompleteMe] Install Go support [Y/n]?" yn
     case $yn in

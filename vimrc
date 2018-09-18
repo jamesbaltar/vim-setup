@@ -22,6 +22,8 @@ Plugin 'fatih/vim-go'
 Plugin 'posva/vim-vue'
 Plugin 'nvie/vim-flake8'
 
+Plugin 'vim-syntastic/syntastic'
+
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
 
@@ -53,6 +55,11 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
+" Navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 let g:airline_theme='angr'
 
@@ -84,3 +91,21 @@ endfunction
 command! Bdi :call DeleteInactiveBufs()
 
 autocmd BufWritePre * %s/\s\+$//e
+set backupdir=$TMPDIR// " $TEMP// <- for Linux
+set directory=$TMPDIR// " $TEMP// <- for Linux
+
+
+" Syntastic =======
+execute pathogen#infect()
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+" =======
