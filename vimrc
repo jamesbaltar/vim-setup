@@ -17,12 +17,14 @@ Plugin 'bling/vim-bufferline'
 Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'leafgarland/typescript-vim'
-Plugin 'jason0x43/vim-js-indent'
+" Plugin 'jason0x43/vim-js-indent'
 Plugin 'fatih/vim-go'
 Plugin 'posva/vim-vue'
-Plugin 'nvie/vim-flake8'
+" Plugin 'nvie/vim-flake8'
 
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
+" Plugin 'maralla/validator.vim'
+Plugin 'w0rp/ale'
 
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
@@ -39,6 +41,7 @@ set t_Co=256
 set number " show line numbers
 set background=dark
 colorscheme onedark
+set cursorline
 
 set tabstop=8
 set expandtab
@@ -63,8 +66,10 @@ nnoremap <C-H> <C-W><C-H>
 
 let g:airline_theme='angr'
 
+let g:ycm_python_binary_path = '/usr/bin/python3'
+
 " Use vim-js-indent instead of the builtin typescript indent in typescript-vim
-let g:typescript_indent_disable = 1
+" let g:typescript_indent_disable = 1
 
 
 " ==================================
@@ -97,15 +102,36 @@ set directory=$TMPDIR// " $TEMP// <- for Linux
 
 " Syntastic =======
 execute pathogen#infect()
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_python_checkers = ['flake8', 'pylint']
+" let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+" ======
 
-let g:syntastic_python_checkers = ['flake8', 'pylint']
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-" =======
+" Validator ===========
+" let g:validator_python_checkers = ['flake8', 'pylint']
+" let g:validator_php_checkers = ['php', 'phpcs', 'phpmd']
+" let g:validator_permament_sign = 1
+" let g:validator_debug = 1
+" let g:validator_python3_binary = '/Users/jbaltar/projects/env/bin/python'
+" let g:validator_python_binary = '/Users/jbaltar/projects/env/bin/python'
+
+
+" ======ALE
+let g:ale_linters = {'python': ['flake8', 'pylint'], 'php': ['php', 'phpcs', 'phpmod']}
+let g:ale_sign_column_always = 1
+
+" enable loading of .vimrc in current directory
+set exrc
+
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+set backspace=indent,eol,start
