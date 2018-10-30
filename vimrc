@@ -39,9 +39,11 @@ set nowrap
 syntax on
 set t_Co=256
 set number " show line numbers
-set background=dark
-colorscheme onedark
+set relativenumber
 set cursorline
+
+colorscheme onedark
+let g:airline_theme='angr'
 
 set tabstop=8
 set expandtab
@@ -64,7 +66,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-let g:airline_theme='angr'
 
 let g:ycm_python_binary_path = '/usr/bin/python3'
 
