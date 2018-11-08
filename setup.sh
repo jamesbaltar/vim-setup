@@ -44,7 +44,7 @@ if [ -e ~/.tmux.conf ]; then
 	mv ~/.tmux.conf ~/.tmux.conf."$BACKUP_DATE"
 	echo "Backup created: ""~/.tmux.conf.""$BACKUP_DATE"
 fi
-
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf $ROOT_DIR/tmux.conf ~/.tmux.conf
 echo "Linked ~/.tmux.conf"
 

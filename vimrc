@@ -27,7 +27,8 @@ Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
 
 " Colorschemes
-Plugin 'joshdick/onedark.vim'
+" Plugin 'joshdick/onedark.vim'
+Plugin 'rafi/awesome-vim-colorschemes'
 
 
 call vundle#end()
@@ -39,11 +40,13 @@ set nowrap
 syntax on
 set t_Co=256
 set number " show line numbers
-set relativenumber
-set cursorline
+" set relativenumber
+" set cursorline
 
-colorscheme onedark
-let g:airline_theme='angr'
+set background=dark
+colorscheme onedark "gruvbox
+let g:airline_theme='minimalist' " 'gruvbox'
+let g:airline_powerline_fonts = 1
 
 set tabstop=8
 set expandtab
@@ -97,12 +100,14 @@ endfunction
 command! Bdi :call DeleteInactiveBufs()
 
 autocmd BufWritePre * %s/\s\+$//e
-set backupdir=$TMPDIR// " $TEMP// <- for Linux
-set directory=$TMPDIR// " $TEMP// <- for Linux
+set backupdir=/tmp// " <- for Linux
+" set backupdir=$TMPDIR// " <- for Mac
+set directory=/tmp// " <- for Linux
+" set backupdir=$TMPDIR// " <- for Mac
 
 
 " Syntastic =======
-execute pathogen#infect()
+" execute pathogen#infect()
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
