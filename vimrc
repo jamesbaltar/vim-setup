@@ -133,6 +133,8 @@ set directory=/tmp// " <- for Linux
 " ======ALE
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'php': ['php', 'phpcs', 'phpmod']}
 let g:ale_sign_column_always = 1
+let g:ale_python_flake8_executable = 'python -m flake8'
+let g:ale_python_pylint_executable = 'python -m pylint'
 
 " enable loading of .vimrc in current directory
 set exrc
