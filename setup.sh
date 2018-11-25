@@ -3,15 +3,15 @@
 ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 sudo apt-get install -y \
-	vim \
-	tmux \
-	build-essential \
-	cmake \
-	python-dev \
-	python3-dev \
+        vim \
+        tmux \
+        build-essential \
+        cmake \
+        python-dev \
+        python3-dev \
         flake8 \
-	git \
-	fonts-powerline \
+        git \
+        fonts-powerline \
         xclip # use for tmux copy buffer
 
 mkdir -p ~/.vim/bundle
@@ -20,15 +20,15 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Backup old vim folder and files
 BACKUP_DATE=`date -d "today" +"%Y%m%d%H%M"`
 if [ -d ~/.vim/ftplugin ]; then
-	echo "Creating current ~/.vim/ftplugin backup..."
-	mv ~/.vim/ftplugin ~/.vim/ftplugin.backup."$BACKUP_DATE"
-	echo "Backup created: ""~/.vim/ftplugin.backup.""$BACKUP_DATE"
+        echo "Creating current ~/.vim/ftplugin backup..."
+        mv ~/.vim/ftplugin ~/.vim/ftplugin.backup."$BACKUP_DATE"
+        echo "Backup created: ""~/.vim/ftplugin.backup.""$BACKUP_DATE"
 fi
 
 if [ -e ~/.vimrc ]; then
-	echo "Creating current ~/.vimrc backup..."
-	mv ~/.vimrc ~/.vimrc.backup."$BACKUP_DATE"
-	echo "Backup created: ""~/.vimrc.backup.""$BACKUP_DATE"
+        echo "Creating current ~/.vimrc backup..."
+        mv ~/.vimrc ~/.vimrc.backup."$BACKUP_DATE"
+        echo "Backup created: ""~/.vimrc.backup.""$BACKUP_DATE"
 
 fi
 
@@ -40,9 +40,9 @@ echo "Linked ~/.vimrc"
 
 # Setup tmux config
 if [ -e ~/.tmux.conf ]; then
-	echo "Creating current ~/.tmux.conf backup..."
-	mv ~/.tmux.conf ~/.tmux.conf."$BACKUP_DATE"
-	echo "Backup created: ""~/.tmux.conf.""$BACKUP_DATE"
+        echo "Creating current ~/.tmux.conf backup..."
+        mv ~/.tmux.conf ~/.tmux.conf."$BACKUP_DATE"
+        echo "Backup created: ""~/.tmux.conf.""$BACKUP_DATE"
 fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf $ROOT_DIR/tmux.conf ~/.tmux.conf
@@ -62,13 +62,13 @@ setup_ycm_typescript() {
 }
 setup_ycm_go() {
     if [ ! -x "$(command -v go)" ]; then
-	echo "Go not found. Installing it now"
-	sudo apt-get install -y wget
-    	wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
-	sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
-	rm go1.10.3.linux-amd64.tar.gz
-	echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
-	export PATH=$PATH:/usr/local/go/bin
+        echo "Go not found. Installing it now"
+        sudo apt-get install -y wget
+        wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
+        rm go1.10.3.linux-amd64.tar.gz
+        echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+        export PATH=$PATH:/usr/local/go/bin
     fi
     YCM_BUILD="$YCM_BUILD --go-completer"
 }
@@ -111,9 +111,20 @@ while true; do
     esac
 done
 
+echo "Setup powerline fonts"
+git clone https://github.com/powerline/fonts.git --depth=1 powerline-fonts
+cd powerline-fonts
+./install.sh
+mkdir -p ~/.config/fontconfig/conf.d
+cp fontconfig/*.conf ~/.config/fontconfig/conf.d/
+fc-cache -vf
+echo "Powerline font is installed. Please re-login again to enable it"
+
+
 if [[ ":$PATH:" == *":$ROOT_DIR/bin:"* ]]; then
   echo "Your PATH already includes $ROOT_DIR/bin"
 else
   echo "export PATH=$PATH:$ROOT_DIR/bin" >> ~/.bashrc
   echo "$ROOT_DIR/bin was added in your PATH through ~/.bashrc"
 fi
+
