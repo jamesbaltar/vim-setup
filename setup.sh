@@ -93,7 +93,7 @@ while true; do
     esac
 done
 cd ~/.vim/bundle/YouCompleteMe
-./install.py $YCM_BUILD
+python3 install.py $YCM_BUILD
 echo "Built YouCompleteMe with \"$YCM_BUILD\" flags"
 
 setup_vuejs_syntax_highlighting_support() {

@@ -18,7 +18,7 @@ Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'leafgarland/typescript-vim'
 " Plugin 'jason0x43/vim-js-indent'
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'posva/vim-vue'
 " Plugin 'nvie/vim-flake8'
 
@@ -29,8 +29,6 @@ Plugin 'w0rp/ale'
 " Colorschemes
 " Plugin 'joshdick/onedark.vim'
 Plugin 'rafi/awesome-vim-colorschemes'
-
-
 call vundle#end()
 
 filetype plugin indent on
@@ -69,8 +67,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Utils Mapping
+nnoremap <C-n> i<Enter><Esc>0h
 
-let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " Use vim-js-indent instead of the builtin typescript indent in typescript-vim
 " let g:typescript_indent_disable = 1
@@ -131,15 +132,19 @@ set directory=/tmp// " <- for Linux
 
 
 " ======ALE
-let g:ale_linters = {'python': ['flake8', 'pylint'], 'php': ['php', 'phpcs', 'phpmod']}
+let g:ale_linters = {'python': ['flake8', 'pylint', 'mypy'], 'php': ['php', 'phpcs', 'phpmod']}
 let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 0
+let g:ale_echo_msg_format = '%linter%: %s'
 let g:ale_python_flake8_executable = 'python -m flake8'
-let g:ale_python_pylint_executable = 'python -m pylint'
+let g:ale_python_pylint_executable = 'python -m pylint --load-plugins pylint_django'
+let g:ale_python_mypy_executable = 'python -m mypy'
 
 " enable loading of .vimrc in current directory
 set exrc
 
 
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
+" let g:ycm_server_keep_logfiles = 1
+" let g:ycm_server_log_level = 'debug'
+let g:ycm_auto_trigger = 0
 set backspace=indent,eol,start
