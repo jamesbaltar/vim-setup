@@ -29,6 +29,11 @@ Plugin 'w0rp/ale'
 " Colorschemes
 " Plugin 'joshdick/onedark.vim'
 Plugin 'rafi/awesome-vim-colorschemes'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'fatih/vim-go'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -148,3 +153,14 @@ set exrc
 " let g:ycm_server_log_level = 'debug'
 let g:ycm_auto_trigger = 0
 set backspace=indent,eol,start
+
+" Trigger configuration. You need to change this to something other than <tab>
+" if you use one of the following:
+" " - https://github.com/Valloric/YouCompleteMe
+" " - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<c-a>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
