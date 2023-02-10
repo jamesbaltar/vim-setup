@@ -35,7 +35,10 @@ Plugin 'honza/vim-snippets'
 " Python code folding
 Plugin 'tmhedberg/SimpylFold'
 
-Plugin 'taglist.vim'
+" For golang
+" go get -u github.com/jstemmer/gotags
+" Plugin 'taglist.vim'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 
@@ -197,8 +200,37 @@ let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsEditSplit="vertical"
 let Tlist_Inc_Winwidth=0
 
-nnoremap <C-t> :TlistToggle<CR>
-nnoremap <C-d> :NERDTreeToggle<CR>
+nnoremap <F2> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 nnoremap <S-t> :tab split<CR>
 
 autocmd BufNewFile,BufRead *.yaml.j2 set syntax=yaml
+
+
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
