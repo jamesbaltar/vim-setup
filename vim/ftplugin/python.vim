@@ -4,3 +4,4 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
 setlocal colorcolumn=79
+setlocal colorcolumn=100

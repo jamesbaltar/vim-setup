@@ -34,6 +34,11 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'fatih/vim-go'
 
+" Python code folding
+Plugin 'tmhedberg/SimpylFold'
+
+Plugin 'taglist.vim'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -42,7 +47,9 @@ filetype plugin indent on
 set nowrap
 syntax on
 set t_Co=256
-set number " show line numbers
+set number relativenumber
+set visualbell
+set t_vb=
 " set relativenumber
 " set cursorline
 
@@ -50,6 +57,7 @@ set background=dark
 colorscheme onedark "gruvbox
 let g:airline_theme='minimalist' " 'gruvbox'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 set tabstop=8
 set expandtab
@@ -74,6 +82,12 @@ nnoremap <C-H> <C-W><C-H>
 
 " Utils Mapping
 nnoremap <C-n> i<Enter><Esc>0h
+
+nnoremap <Leader>b :CtrlPBuffer<CR>
+
+" YCM
+nnoremap <Leader>d :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
 
 
 " let g:ycm_python_binary_path = '/usr/bin/python3'
@@ -139,11 +153,11 @@ set directory=/tmp// " <- for Linux
 " ======ALE
 let g:ale_linters = {'python': ['flake8', 'pylint', 'mypy'], 'php': ['php', 'phpcs', 'phpmod']}
 let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 0
+let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_format = '%linter%: %s'
-let g:ale_python_flake8_executable = 'python -m flake8'
-let g:ale_python_pylint_executable = 'python -m pylint --load-plugins pylint_django'
-let g:ale_python_mypy_executable = 'python -m mypy'
+let g:ale_python_flake8_executable = 'python3 -m flake8'
+let g:ale_python_pylint_executable = 'python3 -m pylint --load-plugins pylint_django'
+let g:ale_python_mypy_executable = 'python3 -m mypy'
 
 " enable loading of .vimrc in current directory
 set exrc
@@ -159,8 +173,14 @@ set backspace=indent,eol,start
 " " - https://github.com/Valloric/YouCompleteMe
 " " - https://github.com/nvim-lua/completion-nvim
 let g:UltiSnipsExpandTrigger="<c-a>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+let Tlist_Inc_Winwidth=0
+
+nnoremap <C-t> :TlistToggle<CR>
+nnoremap <C-d> :NERDTreeToggle<CR>
+nnoremap <S-t> :tab split<CR>
+
