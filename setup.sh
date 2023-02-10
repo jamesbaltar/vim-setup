@@ -74,7 +74,8 @@ setup_ycm_go() {
 }
 
 
-YCM_BUILD='--clang-completer'
+# YCM_BUILD='--clang-completer'
+YCM_BUILD='--all'
 while true; do
     read -p "[YouCompleteMe] Install TypeScript support [Y/n]" yn
     case $yn in
@@ -93,7 +94,7 @@ while true; do
     esac
 done
 cd ~/.vim/bundle/YouCompleteMe
-python3 install.py $YCM_BUILD
+python3 install.py $YCM_BUILD --system-libclang
 echo "Built YouCompleteMe with \"$YCM_BUILD\" flags"
 
 setup_vuejs_syntax_highlighting_support() {

@@ -3,5 +3,4 @@ setlocal softtabstop=4
 setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
-setlocal colorcolumn=79
-setlocal colorcolumn=100
+setlocal colorcolumn=79,100
