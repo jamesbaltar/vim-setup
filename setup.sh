@@ -12,7 +12,9 @@ sudo apt-get install -y \
         flake8 \
         git \
         fonts-powerline \
-        xclip # use for tmux copy buffer
+        xclip \ # use for tmux copy buffer
+        exuberant-ctags
+
 
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -36,6 +38,8 @@ ln -sf $ROOT_DIR/vim/ftplugin ~/.vim/ftplugin
 echo "Linked ~/.vim/ftplugin"
 ln -sf $ROOT_DIR/vimrc ~/.vimrc
 echo "Linked ~/.vimrc"
+ln -sf $ROOT_DIR/ctags ~/.ctags
+echo "Linked ~/.ctags"
 
 
 # Setup tmux config
